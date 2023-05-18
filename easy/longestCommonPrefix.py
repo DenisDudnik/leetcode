@@ -3,9 +3,10 @@ from typing import List
 
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        strs.sort(key=len)
+        strs.sort()
         prefix = strs[0]
-        while not all([str_.startswith(prefix) for str_ in strs]):
+        last = strs[-1]
+        while not last.startswith(prefix):
             prefix = prefix[:-1]
         return prefix
 
