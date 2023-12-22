@@ -19,7 +19,7 @@ class Solution:
             words_in_line = lines[line_num+1][0] - lines[line_num][0]
             
             if words_in_line < 2:
-                result.append(words[lines[line_num][0]] + ' '*(maxWidth-len(words[lines[line_num][0]])))
+                result.append(words[lines[line_num][0]].ljust(maxWidth))
             else:
                 spaces = [' '*((maxWidth-lines[line_num][1])//(words_in_line-1))] * (words_in_line-1)
                 for i in range((maxWidth-lines[line_num][1])%(words_in_line-1)):
@@ -29,10 +29,7 @@ class Solution:
                     res_line += space + words[lines[line_num][0]+i+1]
                 result.append(res_line)
         
-        res_line = " ".join(words[lines[-1][0]:])
-        res_line = res_line + ' '*(maxWidth-len(res_line))
-        result.append(res_line)
-
+        result.append(" ".join(words[lines[-1][0]:]).ljust(maxWidth))
         return result
                 
                 
