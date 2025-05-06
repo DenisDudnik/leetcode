@@ -19,7 +19,7 @@ class Solution:
         backtracking(0, 0, "")
         return result
 
-if __name__ == "main":
+if __name__ == "__main__":
     # Тесты по условиям задачи
     s = Solution()
 
