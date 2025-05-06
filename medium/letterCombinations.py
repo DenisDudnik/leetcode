@@ -26,8 +26,39 @@ from typing import List
 #         return result
 
 
+# class Solution:
+#     def letterCombinations(self, digits: str) -> List[str]:
+#         MAPPING = {
+#             "2": ["a", "b", "c"],
+#             "3": ["d", "e", "f"],
+#             "4": ["g", "h", "i"],
+#             "5": ["j", "k", "l"],
+#             "6": ["m", "n", "o"],
+#             "7": ["p", "q", "r", "s"],
+#             "8": ["t", "u", "v"],
+#             "9": ["w", "x", "y", "z"],
+#         }
+
+#         def append_letter(idx, combination):
+#             if idx == len(digits):
+#                 res.append(combination)
+#                 return
+
+#             for letter in MAPPING[digits[idx]]:
+#                 append_letter(idx + 1, f"{combination}{letter}")
+
+#         if not digits:
+#             return []
+
+#         res = []
+#         append_letter(0, "")
+#         return res
+
+
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
+        import itertools
+
         MAPPING = {
             "2": ["a", "b", "c"],
             "3": ["d", "e", "f"],
@@ -39,20 +70,12 @@ class Solution:
             "9": ["w", "x", "y", "z"],
         }
 
-        def append_letter(idx, combination):
-            if idx == len(digits):
-                res.append(combination)
-                return
-
-            for letter in MAPPING[digits[idx]]:
-                append_letter(idx + 1, f"{combination}{letter}")
-
         if not digits:
             return []
 
-        res = []
-        append_letter(0, "")
-        return res
+        letters_groups = [MAPPING[digit] for digit in digits]
+        result = list(itertools.product(*letters_groups))
+        return result
 
 
 if __name__ == "main":
