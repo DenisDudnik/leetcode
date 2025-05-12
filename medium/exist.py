@@ -49,5 +49,5 @@ sol = Solution()
 board1 = [["A", "B", "C", "E"], ["S", "F", "C", "S"], ["A", "D", "E", "E"]]
 
 assert sol.exist(board1, "ABCCED") is True, "Test case 1 failed"
-# assert sol.exist(board1, "SEE") is True, "Test case 2 failed"
-# assert sol.exist(board1, "ABCB") is False, "Test case 3 failed"
+assert sol.exist(board1, "SEE") is True, "Test case 2 failed"
+assert sol.exist(board1, "ABCB") is False, "Test case 3 failed"
