@@ -7,6 +7,7 @@ class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         results = []
         used = [False] * len(nums)
+        nums.sort()
 
         def backtrack(path: list[int]):
             if len(path) == len(nums):
@@ -51,5 +52,9 @@ expected2 = [
     [3, 2, 1],
 ]
 assert sorted(result2) == sorted(expected2), f"Test case 2 failed: got {result2}"
+
+result3 = s.permuteUnique([3, 3, 0, 3])
+expected3 = [[0, 3, 3, 3], [3, 0, 3, 3], [3, 3, 0, 3], [3, 3, 3, 0]]
+assert sorted(result3) == sorted(expected3), f"Test case 3 failed: got {result3}"
 
 print("All test cases passed!")
