@@ -55,6 +55,58 @@ from typing import List
 #         return res
 
 
+# class Solution:
+#     def letterCombinations(self, digits: str) -> List[str]:
+#         import itertools
+
+#         MAPPING = {
+#             "2": ["a", "b", "c"],
+#             "3": ["d", "e", "f"],
+#             "4": ["g", "h", "i"],
+#             "5": ["j", "k", "l"],
+#             "6": ["m", "n", "o"],
+#             "7": ["p", "q", "r", "s"],
+#             "8": ["t", "u", "v"],
+#             "9": ["w", "x", "y", "z"],
+#         }
+
+#         if not digits:
+#             return []
+
+#         letters_groups = [MAPPING[digit] for digit in digits]
+#         result = list(itertools.product(*letters_groups))
+#         return result
+
+# 2025-09-04
+# class Solution:
+#     def letterCombinations(self, digits: str) -> List[str]:
+#         MAPPING = {
+#             "2": ["a", "b", "c"],
+#             "3": ["d", "e", "f"],
+#             "4": ["g", "h", "i"],
+#             "5": ["j", "k", "l"],
+#             "6": ["m", "n", "o"],
+#             "7": ["p", "q", "r", "s"],
+#             "8": ["t", "u", "v"],
+#             "9": ["w", "x", "y", "z"],
+#         }
+#         result = []
+#         if not digits:
+#             return result
+
+#         def backtrack(i: int, stack: list[str]):
+#             if i == len(digits):
+#                 result.append("".join(stack))
+#                 return
+#             for letter in MAPPING[digits[i]]:
+#                 stack.append(letter)
+#                 backtrack(i + 1, stack)
+#                 stack.pop()
+
+#         backtrack(0, [])
+#         return result
+
+
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         import itertools
@@ -69,16 +121,15 @@ class Solution:
             "8": ["t", "u", "v"],
             "9": ["w", "x", "y", "z"],
         }
-
+        result = []
         if not digits:
-            return []
+            return result
 
-        letters_groups = [MAPPING[digit] for digit in digits]
-        result = list(itertools.product(*letters_groups))
+        groups = [MAPPING[d] for d in digits]
+        result = ["".join(r) for r in itertools.product(*groups)]
         return result
 
-
-if __name__ == "main":
+if __name__ == "__main__":
     # Тесты по условиям задачи
     s = Solution()
 
