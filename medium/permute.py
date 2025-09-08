@@ -3,20 +3,41 @@
 from typing import List
 
 
+# class Solution:
+#     def permute(self, nums: List[int]) -> List[List[int]]:
+#         result = []
+
+#         def backtrack(comb: list[int], used_nums: set):
+#             if len(comb) == len(nums):
+#                 result.append(comb)
+#                 return
+#             for num in nums:
+#                 if num in used_nums:
+#                     continue
+#                 backtrack(comb + [num], used_nums.union([num]))
+
+#         backtrack([], set())
+#         return result
+
+
+# 2025-09-08
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         result = []
+        used = [False] * len(nums)
 
-        def backtrack(comb: list[int], used_nums: set):
+        def backtrack(comb: list[int]):
             if len(comb) == len(nums):
-                result.append(comb)
+                result.append(comb[:])
                 return
-            for num in nums:
-                if num in used_nums:
+            for i in range(len(nums)):
+                if used[i]:
                     continue
-                backtrack(comb + [num], used_nums.union([num]))
+                used[i] = True
+                backtrack(comb + [nums[i]])
+                used[i] = False
 
-        backtrack([], set())
+        backtrack([])
         return result
 
 
