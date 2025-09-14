@@ -21,6 +21,27 @@ from typing import List
 
 
 # 2025-09-04
+# class Solution:
+#     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+#         if target < 2:
+#             return []
+
+#         result = []
+
+#         def backtrack(comb: list[int], current: int, start_idx: int):
+#             if current == target:
+#                 result.append(comb)
+#                 return
+#             for idx in range(start_idx, len(candidates)):
+#                 c = candidates[idx]
+#                 if current + c <= target:
+#                     backtrack(comb + [c], current + c, idx)
+
+#         backtrack([], 0, 0)
+#         return result
+
+
+# 2025-09-14
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         if target < 2:
@@ -28,14 +49,16 @@ class Solution:
 
         result = []
 
-        def backtrack(comb: list[int], current: int, start_idx: int):
-            if current == target:
-                result.append(comb)
+        def backtrack(path, path_sum, idx: int):
+            if path_sum == target:
+                result.append(path[:])
                 return
-            for idx in range(start_idx, len(candidates)):
-                c = candidates[idx]
-                if current + c <= target:
-                    backtrack(comb + [c], current + c, idx)
+
+            for i in range(idx, len(candidates)):
+                c = candidates[i]
+                if path_sum + c > target:
+                    continue  # if candidates is unsorted, else return
+                backtrack(path + [c], path_sum + c, i)
 
         backtrack([], 0, 0)
         return result

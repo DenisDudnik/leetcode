@@ -21,20 +21,41 @@ from typing import List
 
 
 # 2025-09-08
+# class Solution:
+#     def permute(self, nums: List[int]) -> List[List[int]]:
+#         result = []
+#         used = [False] * len(nums)
+
+#         def backtrack(comb: list[int]):
+#             if len(comb) == len(nums):
+#                 result.append(comb[:])
+#                 return
+#             for i in range(len(nums)):
+#                 if used[i]:
+#                     continue
+#                 used[i] = True
+#                 backtrack(comb + [nums[i]])
+#                 used[i] = False
+
+#         backtrack([])
+#         return result
+
+
+# 2025-09-14
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         result = []
         used = [False] * len(nums)
 
-        def backtrack(comb: list[int]):
-            if len(comb) == len(nums):
-                result.append(comb[:])
+        def backtrack(combination: list[int]):
+            if len(combination) == len(nums):
+                result.append(combination[:])
                 return
             for i in range(len(nums)):
                 if used[i]:
                     continue
                 used[i] = True
-                backtrack(comb + [nums[i]])
+                backtrack(combination + [nums[i]])
                 used[i] = False
 
         backtrack([])
