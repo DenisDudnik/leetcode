@@ -3,19 +3,37 @@
 from typing import List
 
 
+# class Solution:
+#     def subsets(self, nums: List[int]) -> List[List[int]]:
+#         result = []
+
+#         def backtrack(idx: int, subset: list[int]):
+#             result.append(subset[:])
+
+#             for i in range(idx, len(nums)):
+#                 subset.append(nums[i])
+#                 backtrack(i+1, subset)
+#                 subset.pop()
+
+#         backtrack(0, [])
+#         return result
+
+
+# 2025-09-17
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         result = []
 
-        def backtrack(idx: int, subset: list[int]):
-            result.append(subset[:])
+        def backtrack(path: list[int], idx: int):
+            result.append(path[:])
+
+            if idx == len(nums):
+                return
 
             for i in range(idx, len(nums)):
-                subset.append(nums[i])
-                backtrack(i+1, subset)
-                subset.pop()
+                backtrack(path + [nums[i]], i+1)
 
-        backtrack(0, [])
+        backtrack([], 0)
         return result
 
 
