@@ -2,61 +2,21 @@
 
 from typing import List
 
-
-# class Solution:
-#     def permute(self, nums: List[int]) -> List[List[int]]:
-#         result = []
-
-#         def backtrack(comb: list[int], used_nums: set):
-#             if len(comb) == len(nums):
-#                 result.append(comb)
-#                 return
-#             for num in nums:
-#                 if num in used_nums:
-#                     continue
-#                 backtrack(comb + [num], used_nums.union([num]))
-
-#         backtrack([], set())
-#         return result
-
-
-# 2025-09-08
-# class Solution:
-#     def permute(self, nums: List[int]) -> List[List[int]]:
-#         result = []
-#         used = [False] * len(nums)
-
-#         def backtrack(comb: list[int]):
-#             if len(comb) == len(nums):
-#                 result.append(comb[:])
-#                 return
-#             for i in range(len(nums)):
-#                 if used[i]:
-#                     continue
-#                 used[i] = True
-#                 backtrack(comb + [nums[i]])
-#                 used[i] = False
-
-#         backtrack([])
-#         return result
-
-
-# 2025-09-14
+# 2025-09-18
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         result = []
         used = [False] * len(nums)
 
-        def backtrack(combination: list[int]):
-            if len(combination) == len(nums):
-                result.append(combination[:])
+        def backtrack(path: list[int]):
+            if len(path) == len(nums):
+                result.append(path[:])
                 return
             for i in range(len(nums)):
-                if used[i]:
-                    continue
-                used[i] = True
-                backtrack(combination + [nums[i]])
-                used[i] = False
+                if not used[i]:
+                    used[i] = True
+                    backtrack(path + [nums[i]])
+                    used[i] = False
 
         backtrack([])
         return result

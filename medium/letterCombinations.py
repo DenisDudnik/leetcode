@@ -2,135 +2,7 @@
 
 from typing import List
 
-
-# class Solution:
-#     def letterCombinations(self, digits: str) -> List[str]:
-#         MAPPING = {
-#             "2": ["a", "b", "c"],
-#             "3": ["d", "e", "f"],
-#             "4": ["g", "h", "i"],
-#             "5": ["j", "k", "l"],
-#             "6": ["m", "n", "o"],
-#             "7": ["p", "q", "r", "s"],
-#             "8": ["t", "u", "v"],
-#             "9": ["w", "x", "y", "z"],
-#         }
-
-#         result = MAPPING[digits[0]] if digits else []
-#         for digit in digits[1:]:
-#             new_res = []
-#             for letter in MAPPING[digit]:
-#                 for comb in result:
-#                     new_res.append(f"{comb}{letter}")
-#             result = new_res
-#         return result
-
-
-# class Solution:
-#     def letterCombinations(self, digits: str) -> List[str]:
-#         MAPPING = {
-#             "2": ["a", "b", "c"],
-#             "3": ["d", "e", "f"],
-#             "4": ["g", "h", "i"],
-#             "5": ["j", "k", "l"],
-#             "6": ["m", "n", "o"],
-#             "7": ["p", "q", "r", "s"],
-#             "8": ["t", "u", "v"],
-#             "9": ["w", "x", "y", "z"],
-#         }
-
-#         def append_letter(idx, combination):
-#             if idx == len(digits):
-#                 res.append(combination)
-#                 return
-
-#             for letter in MAPPING[digits[idx]]:
-#                 append_letter(idx + 1, f"{combination}{letter}")
-
-#         if not digits:
-#             return []
-
-#         res = []
-#         append_letter(0, "")
-#         return res
-
-
-# class Solution:
-#     def letterCombinations(self, digits: str) -> List[str]:
-#         import itertools
-
-#         MAPPING = {
-#             "2": ["a", "b", "c"],
-#             "3": ["d", "e", "f"],
-#             "4": ["g", "h", "i"],
-#             "5": ["j", "k", "l"],
-#             "6": ["m", "n", "o"],
-#             "7": ["p", "q", "r", "s"],
-#             "8": ["t", "u", "v"],
-#             "9": ["w", "x", "y", "z"],
-#         }
-
-#         if not digits:
-#             return []
-
-#         letters_groups = [MAPPING[digit] for digit in digits]
-#         result = list(itertools.product(*letters_groups))
-#         return result
-
-# 2025-09-04
-# class Solution:
-#     def letterCombinations(self, digits: str) -> List[str]:
-#         MAPPING = {
-#             "2": ["a", "b", "c"],
-#             "3": ["d", "e", "f"],
-#             "4": ["g", "h", "i"],
-#             "5": ["j", "k", "l"],
-#             "6": ["m", "n", "o"],
-#             "7": ["p", "q", "r", "s"],
-#             "8": ["t", "u", "v"],
-#             "9": ["w", "x", "y", "z"],
-#         }
-#         result = []
-#         if not digits:
-#             return result
-
-#         def backtrack(i: int, stack: list[str]):
-#             if i == len(digits):
-#                 result.append("".join(stack))
-#                 return
-#             for letter in MAPPING[digits[i]]:
-#                 stack.append(letter)
-#                 backtrack(i + 1, stack)
-#                 stack.pop()
-
-#         backtrack(0, [])
-#         return result
-
-
-# class Solution:
-#     def letterCombinations(self, digits: str) -> List[str]:
-#         import itertools
-
-#         MAPPING = {
-#             "2": ["a", "b", "c"],
-#             "3": ["d", "e", "f"],
-#             "4": ["g", "h", "i"],
-#             "5": ["j", "k", "l"],
-#             "6": ["m", "n", "o"],
-#             "7": ["p", "q", "r", "s"],
-#             "8": ["t", "u", "v"],
-#             "9": ["w", "x", "y", "z"],
-#         }
-#         result = []
-#         if not digits:
-#             return result
-
-#         groups = [MAPPING[d] for d in digits]
-#         result = ["".join(r) for r in itertools.product(*groups)]
-#         return result
-
-
-# 2025-09-14
+# 2025-09-18
 # class Solution:
 #     def letterCombinations(self, digits: str) -> List[str]:
 #         MAPPING = {
@@ -143,21 +15,18 @@ from typing import List
 #             "8": "tuv",
 #             "9": "wxyz",
 #         }
-
 #         result = []
-#         if not digits:
-#             return []
 
-#         def backtrack(path: list[str], i: int):
-#             if i == len(digits):
-#                 result.append("".join(path))
+#         def backrtack(path: list[str], idx: int):
+#             if idx == len(digits):
+#                 if path:
+#                     result.append("".join(path))
 #                 return
 
-#             for letter in MAPPING[digits[i]]:
-#                 backtrack(path + [letter], i + 1)
+#             for letter in MAPPING[digits[idx]]:
+#                 backrtack(path + [letter], idx + 1)
 
-#         backtrack([], 0)
-
+#         backrtack([], 0)
 #         return result
 
 
@@ -176,12 +45,8 @@ class Solution:
             "9": "wxyz",
         }
 
-        if not digits:
-            return []
-
-        c = [MAPPING[digit] for digit in digits]
-        combs = itertools.product(*c)
-        result = ["".join(comb) for comb in combs]
+        combs = [MAPPING[d] for d in digits]
+        result = ["".join(path) for path in itertools.product(*combs) if path]
         return result
 
 
