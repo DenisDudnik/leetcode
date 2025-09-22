@@ -3,22 +3,23 @@
 from typing import List
 
 
+# 2025-09-22
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
+        def is_palindrome(s: str) -> bool:
+            return s == s[::-1]
+
         result = []
 
-        def is_palindrom(word: str):
-            return word == word[::-1]
-
-        def backtrack(left: int, path: list):
-            if left == len(s):
+        def backtrack(left_idx: int, path: list[str]):
+            if left_idx == len(s):
                 result.append(path[:])
                 return
-            for right in range(left + 1, len(s) + 1):
-                word = s[left:right]
-                if is_palindrom(word):
-                    path.append(word)
-                    backtrack(right, path)
+
+            for right_idx in range(left_idx + 1, len(s) + 1):
+                if is_palindrome(s[left_idx:right_idx]):
+                    path.append(s[left_idx:right_idx])
+                    backtrack(right_idx, path)
                     path.pop()
 
         backtrack(0, [])
