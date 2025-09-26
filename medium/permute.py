@@ -2,7 +2,8 @@
 
 from typing import List
 
-# 2025-09-18
+
+# 2025-09-26
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         result = []
@@ -12,6 +13,7 @@ class Solution:
             if len(path) == len(nums):
                 result.append(path[:])
                 return
+
             for i in range(len(nums)):
                 if not used[i]:
                     used[i] = True

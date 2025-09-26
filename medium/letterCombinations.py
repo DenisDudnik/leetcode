@@ -30,6 +30,55 @@ from typing import List
 #         return result
 
 
+# class Solution:
+#     def letterCombinations(self, digits: str) -> List[str]:
+#         import itertools
+
+#         MAPPING = {
+#             "2": "abc",
+#             "3": "def",
+#             "4": "ghi",
+#             "5": "jkl",
+#             "6": "mno",
+#             "7": "pqrs",
+#             "8": "tuv",
+#             "9": "wxyz",
+#         }
+
+#         combs = [MAPPING[d] for d in digits]
+#         result = ["".join(path) for path in itertools.product(*combs) if path]
+#         return result
+
+
+# 2025-09-26
+# class Solution:
+#     def letterCombinations(self, digits: str) -> List[str]:
+#         MAPPING = {
+#             "2": "abc",
+#             "3": "def",
+#             "4": "ghi",
+#             "5": "jkl",
+#             "6": "mno",
+#             "7": "pqrs",
+#             "8": "tuv",
+#             "9": "wxyz",
+#         }
+
+#         result = []
+
+#         def backtrack(path: list[str], i: int):
+#             if i == len(digits):
+#                 if path:
+#                     result.append("".join(path))
+#                 return
+
+#             for c in MAPPING[digits[i]]:
+#                 backtrack(path + [c], i + 1)
+
+#         backtrack([], 0)
+#         return result
+
+
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         import itertools
@@ -45,8 +94,8 @@ class Solution:
             "9": "wxyz",
         }
 
-        combs = [MAPPING[d] for d in digits]
-        result = ["".join(path) for path in itertools.product(*combs) if path]
+        sets = [MAPPING[d] for d in digits]
+        result = ["".join(s) for s in itertools.product(*sets) if s]
         return result
 
 

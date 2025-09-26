@@ -3,14 +3,13 @@
 from typing import List
 
 
-# 2025-09-19
+# 2025-09-23
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         result = []
 
         def backtrack(path: list[int], idx: int):
             result.append(path[:])
-
             if idx == len(nums):
                 return
 

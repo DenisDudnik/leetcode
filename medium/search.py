@@ -3,28 +3,29 @@
 from typing import List
 
 
+# 2025-09-26
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         left, right = 0, len(nums) - 1
 
         while left <= right:
-            med = (left + right) // 2
+            middle = (left + right) // 2
 
-            if nums[med] == target:
-                return med
+            if nums[middle] == target:
+                return middle
 
-            elif nums[med] >= nums[left]:
+            if nums[left] <= nums[middle]:
                 # left sorted
-                if nums[med] < target or nums[left] > target:
-                    left = med + 1
+                if target > nums[middle] or target < nums[left]:
+                    left = middle + 1
                 else:
-                    right = med - 1
+                    right = middle - 1
             else:
                 # right sorted
-                if nums[med] > target or nums[right] < target:
-                    right = med - 1
+                if target < nums[middle] or target > nums[right]:
+                    right = middle - 1
                 else:
-                    left = med + 1
+                    left = middle + 1
 
         return -1
 
@@ -49,6 +50,6 @@ if __name__ == "__main__":
     check_case([4, 5, 6, 7, 8, 1, 2, 3], 8, 4)
 
     # Пример 5
-    check_case([3,1], 1, 1)
+    check_case([3, 1], 1, 1)
 
     print("All test cases passed.")
