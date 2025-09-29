@@ -3,29 +3,29 @@
 from typing import List
 
 
-# 2025-09-26
+# 2025-09-29
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         left, right = 0, len(nums) - 1
 
         while left <= right:
-            middle = (left + right) // 2
+            mid = (left + right) // 2
 
-            if nums[middle] == target:
-                return middle
+            if nums[mid] == target:
+                return mid
 
-            if nums[left] <= nums[middle]:
+            if nums[left] <= nums[mid]:
                 # left sorted
-                if target > nums[middle] or target < nums[left]:
-                    left = middle + 1
+                if target < nums[left] or target > nums[mid]:
+                    left = mid + 1
                 else:
-                    right = middle - 1
+                    right = mid - 1
             else:
                 # right sorted
-                if target < nums[middle] or target > nums[right]:
-                    right = middle - 1
+                if target < nums[mid] or target > nums[right]:
+                    right = mid - 1
                 else:
-                    left = middle + 1
+                    left = mid + 1
 
         return -1
 
