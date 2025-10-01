@@ -4,37 +4,42 @@ from collections import Counter
 from typing import List
 
 
-# 2025-09-26
+# 2025-10-01
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        word_letters = Counter(word)
-        board_letters = Counter(c for row in board for c in row)
+        word_counter = Counter(word)
+        board_counter = Counter(c for r in board for c in r)
 
-        for letter in word_letters:
-            if board_letters[letter] < word_letters[letter]:
+        for c in word_counter:
+            if word_counter[c] > board_counter[c]:
                 return False
 
-        if board_letters[word[0]] > board_letters[word[-1]]:
+        if word_counter[word[0]] > word_counter[word[-1]]:
             word = word[::-1]
 
         rows, cols = len(board), len(board[0])
 
-        def backtrack(row: int, col: int, i: int):
-            if i == len(word):
+        def backtrack(row: int, col: int, idx: int):
+            if idx == len(word):
                 return True
-
-            if row < 0 or row >= rows or col < 0 or col >= cols or board[row][col] == "." or board[row][col] != word[i]:
+            if (
+                row < 0
+                or row >= rows
+                or col < 0
+                or col >= cols
+                or board[row][col] == "."
+                or board[row][col] != word[idx]
+            ):
                 return False
-
             tmp, board[row][col] = board[row][col], "."
-            result = (
-                backtrack(row + 1, col, i + 1)
-                or backtrack(row - 1, col, i + 1)
-                or backtrack(row, col + 1, i + 1)
-                or backtrack(row, col - 1, i + 1)
+            res = (
+                backtrack(row + 1, col, idx + 1)
+                or backtrack(row - 1, col, idx + 1)
+                or backtrack(row, col + 1, idx + 1)
+                or backtrack(row, col - 1, idx + 1)
             )
             board[row][col] = tmp
-            return result
+            return res
 
         for r in range(rows):
             for c in range(cols):

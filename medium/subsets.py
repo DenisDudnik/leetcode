@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2025-09-23
+# 2025-10-01
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         result = []
@@ -12,9 +12,10 @@ class Solution:
             result.append(path[:])
             if idx == len(nums):
                 return
-
             for i in range(idx, len(nums)):
-                backtrack(path + [nums[i]], i + 1)
+                path.append(nums[i])
+                backtrack(path, i + 1)
+                path.pop()
 
         backtrack([], 0)
         return result
