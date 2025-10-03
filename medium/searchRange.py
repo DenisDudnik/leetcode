@@ -3,38 +3,40 @@
 from typing import List
 
 
+# 2025-10-03
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         left, right = 0, len(nums) - 1
-        start, end = -1, -1
+        begin, end = -1, -1
 
         while left <= right:
-            med = (left + right) // 2
+            mid = (left + right) // 2
 
-            if target < nums[med]:
-                right = med - 1
-            elif target > nums[med]:
-                left = med + 1
+            if nums[mid] < target:
+                left = mid + 1
+            elif nums[mid] > target:
+                right = mid - 1
             else:
-                start = med
-                right = med - 1
+                begin = mid
+                right = mid - 1
 
-        if start == -1:
+        if begin == -1:
             return [-1, -1]
 
-        left, right = start, len(nums) - 1
+        left, right = begin, len(nums) - 1
+
         while left <= right:
-            med = (left + right) // 2
+            mid = (left + right) // 2
 
-            if target < nums[med]:
-                right = med - 1
-            elif target > nums[med]:
-                left = med + 1
+            if nums[mid] < target:
+                left = mid + 1
+            elif nums[mid] > target:
+                right = mid - 1
             else:
-                end = med
-                left = med + 1
+                end = mid
+                left = mid + 1
 
-        return [start, end]
+        return [begin, end]
 
 
 if __name__ == "__main__":
