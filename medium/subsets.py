@@ -3,15 +3,17 @@
 from typing import List
 
 
-# 2025-10-01
+# 2025-10-15
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         result = []
 
         def backtrack(path: list[int], idx: int):
             result.append(path[:])
+
             if idx == len(nums):
                 return
+
             for i in range(idx, len(nums)):
                 path.append(nums[i])
                 backtrack(path, i + 1)
