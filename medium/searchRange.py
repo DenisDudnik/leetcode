@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2025-10-06
+# 2025-10-10
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
         left, right = 0, len(nums) - 1
@@ -11,7 +11,6 @@ class Solution:
 
         while left <= right:
             mid = (left + right) // 2
-
             if nums[mid] == target:
                 start = mid
                 right = mid - 1
@@ -26,7 +25,6 @@ class Solution:
         left, right = start, len(nums) - 1
         while left <= right:
             mid = (left + right) // 2
-
             if nums[mid] == target:
                 end = mid
                 left = mid + 1

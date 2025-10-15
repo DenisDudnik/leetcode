@@ -2,7 +2,7 @@
 
 from typing import List
 
-# 2025-09-18
+# 2025-10-10
 # class Solution:
 #     def letterCombinations(self, digits: str) -> List[str]:
 #         MAPPING = {
@@ -15,65 +15,19 @@ from typing import List
 #             "8": "tuv",
 #             "9": "wxyz",
 #         }
+
 #         result = []
 
-#         def backrtack(path: list[str], idx: int):
+#         def backtrack(path: list[str], idx: int):
 #             if idx == len(digits):
 #                 if path:
 #                     result.append("".join(path))
 #                 return
-
-#             for letter in MAPPING[digits[idx]]:
-#                 backrtack(path + [letter], idx + 1)
-
-#         backrtack([], 0)
-#         return result
-
-
-# class Solution:
-#     def letterCombinations(self, digits: str) -> List[str]:
-#         import itertools
-
-#         MAPPING = {
-#             "2": "abc",
-#             "3": "def",
-#             "4": "ghi",
-#             "5": "jkl",
-#             "6": "mno",
-#             "7": "pqrs",
-#             "8": "tuv",
-#             "9": "wxyz",
-#         }
-
-#         combs = [MAPPING[d] for d in digits]
-#         result = ["".join(path) for path in itertools.product(*combs) if path]
-#         return result
-
-
-# 2025-09-26
-# class Solution:
-#     def letterCombinations(self, digits: str) -> List[str]:
-#         MAPPING = {
-#             "2": "abc",
-#             "3": "def",
-#             "4": "ghi",
-#             "5": "jkl",
-#             "6": "mno",
-#             "7": "pqrs",
-#             "8": "tuv",
-#             "9": "wxyz",
-#         }
-
-#         result = []
-
-#         def backtrack(path: list[str], i: int):
-#             if i == len(digits):
-#                 if path:
-#                     result.append("".join(path))
-#                 return
-
-#             for c in MAPPING[digits[i]]:
-#                 backtrack(path + [c], i + 1)
+#             letters = MAPPING[digits[idx]]
+#             for letter in letters:
+#                 path.append(letter)
+#                 backtrack(path, idx + 1)
+#                 path.pop()
 
 #         backtrack([], 0)
 #         return result
@@ -94,8 +48,9 @@ class Solution:
             "9": "wxyz",
         }
 
-        sets = [MAPPING[d] for d in digits]
-        result = ["".join(s) for s in itertools.product(*sets) if s]
+        combs = [MAPPING[digit] for digit in digits]
+        products = itertools.product(*combs)
+        result = ["".join(pr) for pr in products if pr]
         return result
 
 

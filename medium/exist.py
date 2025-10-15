@@ -4,39 +4,33 @@ from collections import Counter
 from typing import List
 
 
-# 2025-10-01
+# 2025-10-10
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        word_counter = Counter(word)
-        board_counter = Counter(c for r in board for c in r)
+        rows, cols = len(board), len(board[0])
+        word_letters = Counter(word)
+        board_letters = Counter(c for r in board for c in r)
 
-        for c in word_counter:
-            if word_counter[c] > board_counter[c]:
+        for letter in word_letters:
+            if word_letters[letter] > board_letters[letter]:
                 return False
 
-        if word_counter[word[0]] > word_counter[word[-1]]:
+        if board_letters[word[0]] > board_letters[word[-1]]:
             word = word[::-1]
 
-        rows, cols = len(board), len(board[0])
-
-        def backtrack(row: int, col: int, idx: int):
-            if idx == len(word):
+        def backtrack(row: int, col: int, i: int) -> bool:
+            if i == len(word):
                 return True
-            if (
-                row < 0
-                or row >= rows
-                or col < 0
-                or col >= cols
-                or board[row][col] == "."
-                or board[row][col] != word[idx]
-            ):
+
+            if row < 0 or row >= rows or col < 0 or col >= cols or board[row][col] == "#" or board[row][col] != word[i]:
                 return False
-            tmp, board[row][col] = board[row][col], "."
+
+            tmp, board[row][col] = board[row][col], "#"
             res = (
-                backtrack(row + 1, col, idx + 1)
-                or backtrack(row - 1, col, idx + 1)
-                or backtrack(row, col + 1, idx + 1)
-                or backtrack(row, col - 1, idx + 1)
+                backtrack(row - 1, col, i + 1)
+                or backtrack(row + 1, col, i + 1)
+                or backtrack(row, col - 1, i + 1)
+                or backtrack(row, col + 1, i + 1)
             )
             board[row][col] = tmp
             return res
