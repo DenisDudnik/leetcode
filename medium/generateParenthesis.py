@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2025-10-10
+# 2025-11-04
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         result = []
@@ -12,6 +12,7 @@ class Solution:
             if right == n:
                 result.append("".join(path))
                 return
+
             if left < n:
                 path.append("(")
                 backtrack(path, left + 1, right)

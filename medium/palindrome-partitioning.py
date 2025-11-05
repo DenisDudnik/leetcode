@@ -2,36 +2,30 @@
 
 from typing import List
 
-# 2025-10-15
+# 2025-11-04
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
-        len_s = len(s)
-        dp = [[None] * len_s for _ in range(len_s)]
+        n = len(s)
+        dp = [[None] * n for _ in range(n)]
 
-        for i in range(len_s):
-            for j in range(len_s):
-                if j > i:
-                    break
-                if i == j or (i - j == 1 and s[i] == s[j]):
-                    dp[i][j] = True
-                elif s[i] == s[j] and dp[i - 1][j + 1]:
-                    dp[i][j] = True
+        for i in range(n - 1, -1, -1):
+            for j in range(i, n):
+                if j - i <= 2:
+                    dp[i][j] = s[i] == s[j]
                 else:
-                    dp[i][j] = False
-
-        def is_palindrome(i, j) -> bool:
-            return dp[j][i]
+                    dp[i][j] = s[i] == s[j] and dp[i + 1][j - 1]
 
         result = []
 
-        def backtrack(path: list[str], idx: int):
-            if idx == len_s:
+        def backtrack(path: list[str], left: int):
+            if left == n:
                 result.append(path[:])
                 return
-            for i in range(idx, len_s):
-                if is_palindrome(idx, i):
-                    path.append(s[idx : i + 1])
-                    backtrack(path, i + 1)
+
+            for right in range(left, n):
+                if dp[left][right]:
+                    path.append(s[left : right + 1])
+                    backtrack(path, right + 1)
                     path.pop()
 
         backtrack([], 0)
@@ -43,4 +37,6 @@ sol = Solution()
 assert sorted(sol.partition("aab")) == sorted([["a", "a", "b"], ["aa", "b"]])
 assert sorted(sol.partition("a")) == sorted([["a"]])
 assert sorted(sol.partition("efe")) == sorted([["e", "f", "e"], ["efe"]])
-assert sorted(sol.partition("abbab")) == sorted([["a","b","b","a","b"],["a","b","bab"],["a","bb","a","b"],["abba","b"]])
+assert sorted(sol.partition("abbab")) == sorted(
+    [["a", "b", "b", "a", "b"], ["a", "b", "bab"], ["a", "bb", "a", "b"], ["abba", "b"]]
+)

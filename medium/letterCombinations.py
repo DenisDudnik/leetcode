@@ -2,7 +2,7 @@
 
 from typing import List
 
-# 2025-10-10
+# 2025-11-05
 # class Solution:
 #     def letterCombinations(self, digits: str) -> List[str]:
 #         MAPPING = {
@@ -23,9 +23,9 @@ from typing import List
 #                 if path:
 #                     result.append("".join(path))
 #                 return
-#             letters = MAPPING[digits[idx]]
-#             for letter in letters:
-#                 path.append(letter)
+
+#             for c in MAPPING[digits[idx]]:
+#                 path.append(c)
 #                 backtrack(path, idx + 1)
 #                 path.pop()
 
@@ -48,9 +48,10 @@ class Solution:
             "9": "wxyz",
         }
 
-        combs = [MAPPING[digit] for digit in digits]
-        products = itertools.product(*combs)
-        result = ["".join(pr) for pr in products if pr]
+        groups = [MAPPING[d] for d in digits]
+
+        combs = itertools.product(*groups)
+        result = ["".join(comb) for comb in combs if comb]
         return result
 
 

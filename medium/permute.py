@@ -3,18 +3,18 @@
 from typing import List
 
 
-# 2025-10-10
+# 2025-11-04
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         # result = []
-        # used = [False] * len(nums)
+        # len_nums = len(nums)
+        # used = [False] * len_nums
 
         # def backtrack(path: list[int]):
-        #     if len(path) == len(nums):
+        #     if len(path) == len_nums:
         #         result.append(path[:])
         #         return
-
-        #     for i in range(len(nums)):
+        #     for i in range(len_nums):
         #         if not used[i]:
         #             used[i] = True
         #             path.append(nums[i])
@@ -24,9 +24,10 @@ class Solution:
 
         # backtrack([])
         # return result
+
         import itertools
 
-        return [list(c) for c in itertools.permutations(nums)]
+        return [list(p) for p in itertools.permutations(nums)]
 
 
 # Тесты

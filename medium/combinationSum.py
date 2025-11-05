@@ -3,27 +3,28 @@
 from typing import List
 
 
-# 2025-10-10
+# 2025-11-04
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         if target <= 1:
             return []
 
         result = []
-        candidates.sort()
 
         def backtrack(path: list[int], path_sum: int, idx: int):
             if path_sum == target:
                 result.append(path[:])
                 return
+
+            if idx == len(candidates):
+                return
+
             for i in range(idx, len(candidates)):
                 c = candidates[i]
                 if path_sum + c <= target:
                     path.append(c)
                     backtrack(path, path_sum + c, i)
                     path.pop()
-                else:
-                    return
 
         backtrack([], 0, 0)
         return result
