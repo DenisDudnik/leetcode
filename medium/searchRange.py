@@ -4,16 +4,52 @@ from typing import List
 
 
 # 2025-10-10
+# class Solution:
+#     def searchRange(self, nums: List[int], target: int) -> List[int]:
+#         left, right = 0, len(nums) - 1
+#         start, end = -1, -1
+
+#         while left <= right:
+#             mid = (left + right) // 2
+#             if nums[mid] == target:
+#                 start = mid
+#                 right = mid - 1
+#             elif target < nums[mid]:
+#                 right = mid - 1
+#             else:
+#                 left = mid + 1
+
+#         if start == -1:
+#             return [-1, -1]
+
+#         left, right = start, len(nums) - 1
+#         while left <= right:
+#             mid = (left + right) // 2
+#             if nums[mid] == target:
+#                 end = mid
+#                 left = mid + 1
+#             elif target < nums[mid]:
+#                 right = mid - 1
+#             else:
+#                 left = mid + 1
+
+#         return [start, end]
+
+
+# 2025-11-06
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        left, right = 0, len(nums) - 1
         start, end = -1, -1
+
+        left, right = 0, len(nums) - 1
 
         while left <= right:
             mid = (left + right) // 2
+
             if nums[mid] == target:
                 start = mid
                 right = mid - 1
+
             elif target < nums[mid]:
                 right = mid - 1
             else:
@@ -23,11 +59,14 @@ class Solution:
             return [-1, -1]
 
         left, right = start, len(nums) - 1
+
         while left <= right:
             mid = (left + right) // 2
+
             if nums[mid] == target:
                 end = mid
                 left = mid + 1
+
             elif target < nums[mid]:
                 right = mid - 1
             else:
@@ -53,5 +92,8 @@ if __name__ == "__main__":
 
     # Пример 3
     check_case([], 0, [-1, -1])
+
+    # Пример 4
+    check_case([2, 2], 2, [0, 1])
 
     print("All test cases passed.")
