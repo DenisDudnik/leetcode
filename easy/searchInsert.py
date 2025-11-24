@@ -4,19 +4,20 @@
 from typing import List
 
 
+# 2025-11-24
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         left, right = 0, len(nums) - 1
 
         while left <= right:
-            med = (left + right) // 2
+            mid = (left + right) // 2
 
-            if nums[med] < target:
-                left = med + 1
-            elif nums[med] > target:
-                right = med - 1
+            if nums[mid] == target:
+                return mid
+            elif target < nums[mid]:
+                right = mid - 1
             else:
-                return med
+                left = mid + 1
 
         return left
 
