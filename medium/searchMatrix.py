@@ -3,28 +3,30 @@
 from typing import List
 
 
-# 2025-11-24
+# 2025-11-30
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         if target < matrix[0][0] or target > matrix[-1][-1]:
             return False
 
-        top, bottom = 0, len(matrix)
-        mid = -1
+        top, bottom = 0, len(matrix) - 1
+        left, right = 0, len(matrix[0]) - 1
+
         while top <= bottom:
             mid = (top + bottom) // 2
-            if target < matrix[mid][0]:
-                bottom = mid - 1
-            elif target > matrix[mid][-1]:
-                top = mid + 1
-            else:
+
+            if target <= matrix[mid][-1] and target >= matrix[mid][0]:
                 break
+            elif target < matrix[mid][0]:
+                bottom = mid - 1
+            else:
+                top = mid + 1
 
         line = matrix[mid]
-        left, right = 0, len(line) - 1
 
         while left <= right:
             mid = (left + right) // 2
+
             if target == line[mid]:
                 return True
             elif target < line[mid]:
