@@ -3,21 +3,22 @@
 from typing import List
 
 
-# 2025-11-29
+# 2025-12-01
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        result = []
         nums.sort()
+        result = []
+        n = len(nums)
 
-        for i in range(len(nums)):
+        for i in range(n):
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
 
+            target = -nums[i]
             if nums[i] > 0:
                 break
 
-            left, right = i + 1, len(nums) - 1
-            target = -nums[i]
+            left, right = i + 1, n - 1
             while left < right:
                 s = nums[left] + nums[right]
                 if s == target:
@@ -31,10 +32,10 @@ class Solution:
 
                     left += 1
                     right -= 1
-                elif s < target:
-                    left += 1
-                else:
+                elif s > target:
                     right -= 1
+                else:
+                    left += 1
 
         return result
 
