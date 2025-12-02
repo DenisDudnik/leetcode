@@ -3,30 +3,31 @@
 from typing import List
 
 
-# 2025-11-30
+# 2025-12-02
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         if target < matrix[0][0] or target > matrix[-1][-1]:
             return False
 
         top, bottom = 0, len(matrix) - 1
-        left, right = 0, len(matrix[0]) - 1
 
+        line = None
         while top <= bottom:
             mid = (top + bottom) // 2
-
-            if target <= matrix[mid][-1] and target >= matrix[mid][0]:
-                break
-            elif target < matrix[mid][0]:
+            if target < matrix[mid][0]:
                 bottom = mid - 1
-            else:
+            elif target > matrix[mid][-1]:
                 top = mid + 1
+            else:
+                line = matrix[mid]
+                break
 
-        line = matrix[mid]
+        if line is None:
+            return False
 
+        left, right = 0, len(line) - 1
         while left <= right:
             mid = (left + right) // 2
-
             if target == line[mid]:
                 return True
             elif target < line[mid]:
@@ -49,6 +50,9 @@ if __name__ == "__main__":
 
     # Пример 2
     check_case([[1, 3, 5, 7], [10, 11, 16, 20], [23, 30, 34, 60]], 13, False)
+
+    # Пример 3
+    check_case([[1], [3]], 2, False)
 
     # Единичный элемент
     check_case([[1]], 1, True)

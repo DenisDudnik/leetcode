@@ -4,7 +4,7 @@
 from typing import List
 
 
-# 2025-11-28
+# 2025-12-02
 class Solution:
     def searchInsert(self, nums: List[int], target: int) -> int:
         left, right = 0, len(nums) - 1
@@ -14,9 +14,9 @@ class Solution:
             if target == nums[mid]:
                 return mid
             elif target < nums[mid]:
-                right = mid - 1
+                right -= 1
             else:
-                left = mid + 1
+                left += 1
 
         return left
 

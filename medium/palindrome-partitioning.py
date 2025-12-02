@@ -2,33 +2,28 @@
 
 from typing import List
 
-# 2025-11-04
+# 2025-12-02
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
         n = len(s)
         dp = [[None] * n for _ in range(n)]
-
         for i in range(n - 1, -1, -1):
             for j in range(i, n):
-                if j - i <= 2:
-                    dp[i][j] = s[i] == s[j]
-                else:
-                    dp[i][j] = s[i] == s[j] and dp[i + 1][j - 1]
+                dp[i][j] = (j - i <= 2 or dp[i + 1][j - 1]) and s[i] == s[j]
 
         result = []
 
-        def backtrack(path: list[str], left: int):
-            if left == n:
+        def backtrack(start: int, path: list[str]):
+            if start == n:
                 result.append(path[:])
                 return
-
-            for right in range(left, n):
-                if dp[left][right]:
-                    path.append(s[left : right + 1])
-                    backtrack(path, right + 1)
+            for end in range(start, n):
+                if dp[start][end]:
+                    path.append(s[start : end + 1])
+                    backtrack(end + 1, path)
                     path.pop()
 
-        backtrack([], 0)
+        backtrack(0, [])
         return result
 
 
