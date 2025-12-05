@@ -3,17 +3,16 @@
 from typing import List
 
 
-# 2025-12-01
+# 2025-12-05
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         nums_dict = {}
 
-        for i, num in enumerate(nums):
-            diff = target - num
-            if diff in nums_dict:
-                return [i, nums_dict[diff]]
-
-            nums_dict[num] = i
+        for i in range(len(nums)):
+            second = target - nums[i]
+            if second in nums_dict:
+                return [i, nums_dict[second]]
+            nums_dict[nums[i]] = i
 
         return []
 
