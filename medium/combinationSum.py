@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2025-11-04
+# 2025-12-15
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         if target <= 1:
@@ -15,7 +15,6 @@ class Solution:
             if path_sum == target:
                 result.append(path[:])
                 return
-
             if idx == len(candidates):
                 return
 

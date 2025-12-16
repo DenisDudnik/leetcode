@@ -3,31 +3,30 @@
 from typing import List
 
 
-# 2025-11-04
+# 2025-12-15
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         # result = []
-        # len_nums = len(nums)
-        # used = [False] * len_nums
+        # used = [False] * len(nums)
 
         # def backtrack(path: list[int]):
-        #     if len(path) == len_nums:
+        #     if len(path) == len(nums):
         #         result.append(path[:])
         #         return
-        #     for i in range(len_nums):
+        #     for i in range(len(nums)):
         #         if not used[i]:
-        #             used[i] = True
         #             path.append(nums[i])
+        #             used[i] = True
         #             backtrack(path)
-        #             path.pop()
         #             used[i] = False
+        #             path.pop()
 
         # backtrack([])
         # return result
 
         import itertools
 
-        return [list(p) for p in itertools.permutations(nums)]
+        return [list(p) for p in (itertools.permutations(nums))]
 
 
 # Тесты

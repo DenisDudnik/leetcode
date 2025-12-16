@@ -2,41 +2,9 @@
 
 from typing import List
 
-# 2025-11-05
-# class Solution:
-#     def letterCombinations(self, digits: str) -> List[str]:
-#         MAPPING = {
-#             "2": "abc",
-#             "3": "def",
-#             "4": "ghi",
-#             "5": "jkl",
-#             "6": "mno",
-#             "7": "pqrs",
-#             "8": "tuv",
-#             "9": "wxyz",
-#         }
-
-#         result = []
-
-#         def backtrack(path: list[str], idx: int):
-#             if idx == len(digits):
-#                 if path:
-#                     result.append("".join(path))
-#                 return
-
-#             for c in MAPPING[digits[idx]]:
-#                 path.append(c)
-#                 backtrack(path, idx + 1)
-#                 path.pop()
-
-#         backtrack([], 0)
-#         return result
-
-
+# 2025-12-15
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        import itertools
-
         MAPPING = {
             "2": "abc",
             "3": "def",
@@ -47,12 +15,25 @@ class Solution:
             "8": "tuv",
             "9": "wxyz",
         }
+        # result = []
 
-        groups = [MAPPING[d] for d in digits]
+        # def backtrack(path: list[str], idx: int):
+        #     if idx == len(digits):
+        #         if path:
+        #             result.append("".join(path))
+        #         return
+        #     for s in MAPPING[digits[idx]]:
+        #         path.append(s)
+        #         backtrack(path, idx + 1)
+        #         path.pop()
 
-        combs = itertools.product(*groups)
-        result = ["".join(comb) for comb in combs if comb]
-        return result
+        # backtrack([], 0)
+        # return result
+
+        import itertools
+
+        source = [MAPPING[d] for d in digits]
+        return ["".join(p) for p in itertools.product(*source) if p]
 
 
 if __name__ == "__main__":
