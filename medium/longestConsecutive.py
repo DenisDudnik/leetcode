@@ -3,23 +3,23 @@
 from typing import List
 
 
-# 2025-12-06
+# 2025-12-16
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
-        n = len(nums)
-        if n < 2:
-            return n
+        if len(nums) < 2:
+            return len(nums)
 
-        nums_set = set(nums)
         longest = 0
-
-        for num in nums_set:
-            if num-1 not in nums_set:
-                current = num + 1
+        nums_set = set(nums)
+        for n in nums_set:
+            if n - 1 not in nums_set:
+                current = n + 1
                 current_len = 1
+
                 while current in nums_set:
                     current += 1
                     current_len += 1
+
                 longest = max(longest, current_len)
 
         return longest
