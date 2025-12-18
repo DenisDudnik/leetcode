@@ -7,17 +7,17 @@ from typing import List
 # https://www.youtube.com/watch?v=1x91vuYSibw
 
 
-# 2025-12-16
+# 2025-12-18
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        pre_dict = {0: 1}
-        pre_sum = 0
+        nums_dict = {0: 1}
         result = 0
+        s = 0
 
-        for n in nums:
-            pre_sum += n
-            result += pre_dict.get(pre_sum - k, 0)
-            pre_dict[pre_sum] = pre_dict.get(pre_sum, 0) + 1
+        for num in nums:
+            s += num
+            result += nums_dict.get(s - k, 0)
+            nums_dict[s] = nums_dict.get(s, 0) + 1
 
         return result
 
