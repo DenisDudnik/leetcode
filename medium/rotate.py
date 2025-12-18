@@ -2,41 +2,33 @@
 
 from typing import List
 
+# 2025-12-18
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
-        """
-        Do not return anything, modify nums in-place instead.
-        """
-        # k = k % len(nums)
-        # nums.reverse()
-        # nums_len = len(nums)
+        k = k % len(nums)
+        if k < 1:
+            return
 
-        # for idx in range(k//2):
-        #     nums[k-idx-1], nums[idx] = nums[idx], nums[k-idx-1]
-        # for idx in range(-1, -((nums_len - k)//2+1), -1):
-        #     nums[-(nums_len-k+idx+1)], nums[idx] = nums[idx], nums[-(nums_len-k+idx+1)]
+        def rotate(left, right):
+            while left < right:
+                nums[left], nums[right] = nums[right], nums[left]
+                left += 1
+                right -= 1
 
-        k=k%len(nums)
-        nums.reverse()
-    
-        # Reverse the first k elements
-        nums[:k] = reversed(nums[:k])
-    
-        # Reverse the remaining elements
-        nums[k:] = reversed(nums[k:])
-
-        print(nums)
+        rotate(0, len(nums)-1)
+        rotate(0, k - 1)
+        rotate(k, len(nums)-1)
 
 
 if __name__ == "__main__":
-    nums, k = [1,2,3,4,5,6,7], 4
-    Solution().rotate(nums = nums, k = k)
-    assert nums == [4,5,6,7,1,2,3]
-    
-    nums, k = [-1,-100,3,99], 2
-    Solution().rotate(nums = nums, k = k)
-    assert nums == [3,99,-1,-100]
-    
-    nums, k = [1,2], 3
-    Solution().rotate(nums = nums, k = k)
-    assert nums == [2,1]
+    nums, k = [1, 2, 3, 4, 5, 6, 7], 4
+    Solution().rotate(nums=nums, k=k)
+    assert nums == [4, 5, 6, 7, 1, 2, 3]
+
+    nums, k = [-1, -100, 3, 99], 2
+    Solution().rotate(nums=nums, k=k)
+    assert nums == [3, 99, -1, -100]
+
+    nums, k = [1, 2], 3
+    Solution().rotate(nums=nums, k=k)
+    assert nums == [2, 1]
