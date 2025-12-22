@@ -3,18 +3,19 @@
 from typing import List
 
 
+# 2025-12-22
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        intervals.sort()
-        res = [intervals[0]]
-        for interval in intervals[1:]:
-            if interval[0] <= res[-1][-1]:
-                if interval[1] > res[-1][-1]:
-                    res[-1][-1] = interval[1]
+        intervals.sort(key=lambda x: x[0])
+        result = []
+
+        for interval in intervals:
+            if result and interval[0] <= result[-1][1]:
+                result[-1][1] = max(result[-1][1], interval[1])
             else:
-                res.append(interval)
-        print(res)
-        return res
+                result.append(interval)
+
+        return result
 
 
 if __name__ == "__main__":
