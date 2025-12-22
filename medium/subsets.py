@@ -3,43 +3,22 @@
 from typing import List
 
 
-# 2025-11-04
-# class Solution:
-#     def subsets(self, nums: List[int]) -> List[List[int]]:
-#         result = []
-
-#         def backtrack(path: list[int], idx: int):
-#             result.append(path[:])
-
-#             if idx == len(nums):
-#                 return
-
-#             for i in range(idx, len(nums)):
-#                 path.append(nums[i])
-#                 backtrack(path, i + 1)
-#                 path.pop()
-
-#         backtrack([], 0)
-#         return result
-
-
-# 2025-11-10
+# 2025-12-22
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         result = []
 
-        def backtrack(path: list[int], idx: int):
+        def backtarck(path: list[int], idx: int):
             result.append(path[:])
-
             if idx == len(nums):
                 return
 
             for i in range(idx, len(nums)):
                 path.append(nums[i])
-                backtrack(path, i + 1)
+                backtarck(path, i + 1)
                 path.pop()
 
-        backtrack([], 0)
+        backtarck([], 0)
         return result
 
 
