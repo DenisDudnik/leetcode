@@ -2,22 +2,22 @@
 
 from typing import List
 
-# 2025-12-18
+# 2025-12-22
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
         k = k % len(nums)
         if k < 1:
             return
 
-        def rotate(left, right):
+        def rotate_list(left: int, right: int):
             while left < right:
                 nums[left], nums[right] = nums[right], nums[left]
                 left += 1
                 right -= 1
 
-        rotate(0, len(nums)-1)
-        rotate(0, k - 1)
-        rotate(k, len(nums)-1)
+        rotate_list(0, len(nums) - 1)
+        rotate_list(0, k - 1)
+        rotate_list(k, len(nums) - 1)
 
 
 if __name__ == "__main__":

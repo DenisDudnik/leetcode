@@ -10,14 +10,14 @@ from typing import List
 # 2025-12-18
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
-        nums_dict = {0: 1}
         result = 0
+        prefix_sums = {0: 1}
         s = 0
 
-        for num in nums:
-            s += num
-            result += nums_dict.get(s - k, 0)
-            nums_dict[s] = nums_dict.get(s, 0) + 1
+        for n in nums:
+            s += n
+            result += prefix_sums.get(s - k, 0)
+            prefix_sums[s] = prefix_sums.get(s, 0) + 1
 
         return result
 

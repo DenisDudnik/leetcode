@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2025-12-18
+# 2025-12-22
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
         """
@@ -20,7 +20,7 @@ class Solution:
             elif nums[mid] == 1:
                 mid += 1
             else:
-                nums[mid], nums[right] = nums[right], nums[mid]
+                nums[right], nums[mid] = nums[mid], nums[right]
                 right -= 1
 
 
