@@ -3,23 +3,24 @@
 from typing import List
 
 
+# 2025-12-23
 class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
-        if len(nums) == 0:
+        if not nums:
             return []
 
-        res = [str(nums[0])]
-        start_idx = 0
-        for idx in range(1, len(nums)):
-            if nums[idx] - nums[idx - 1] > 1:
-                if idx - 1 > start_idx:
-                    res[-1] += f"->{nums[idx-1]}"
-                res.append(str(nums[idx]))
-                start_idx = idx
-        if len(nums) - 1 > start_idx:
-            res[-1] += f"->{nums[-1]}"
-        print(res)
-        return res
+        result = []
+        interval = [nums[0], nums[0]]
+
+        for n in nums:
+            if n - interval[1] > 1:
+                result.append(f"{interval[0]}" if interval[0] == interval[1] else f"{interval[0]}->{interval[1]}")
+                interval = [n, n]
+            else:
+                interval[1] = n
+
+        result.append(f"{interval[0]}" if interval[0] == interval[1] else f"{interval[0]}->{interval[1]}")
+        return result
 
 
 if __name__ == "__main__":
