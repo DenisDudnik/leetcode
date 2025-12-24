@@ -3,12 +3,9 @@
 from typing import List
 
 
-# 2025-12-22
+# 2025-12-24
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
-        """
-        Do not return anything, modify nums in-place instead.
-        """
         left = mid = 0
         right = len(nums) - 1
 
@@ -20,7 +17,7 @@ class Solution:
             elif nums[mid] == 1:
                 mid += 1
             else:
-                nums[right], nums[mid] = nums[mid], nums[right]
+                nums[mid], nums[right] = nums[right], nums[mid]
                 right -= 1
 
 

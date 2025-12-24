@@ -3,17 +3,17 @@
 from typing import List
 
 
-# 2025-12-22
+# 2025-12-24
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         intervals.sort(key=lambda x: x[0])
         result = []
 
         for interval in intervals:
-            if result and interval[0] <= result[-1][1]:
-                result[-1][1] = max(result[-1][1], interval[1])
-            else:
+            if not result or interval[0] > result[-1][1]:
                 result.append(interval)
+            else:
+                result[-1][1] = max(result[-1][1], interval[1])
 
         return result
 
