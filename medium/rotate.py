@@ -2,18 +2,18 @@
 
 from typing import List
 
-# 2025-12-24
+# 2025-12-28
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
         k = k % len(nums)
         if k == 0:
             return
 
-        def rotate_nums(left, right):
-            while left < right:
-                nums[left], nums[right] = nums[right], nums[left]
-                left += 1
-                right -= 1
+        def rotate_nums(l, r):
+            while l < r:
+                nums[l], nums[r] = nums[r], nums[l]
+                l += 1
+                r -= 1
 
         rotate_nums(0, len(nums) - 1)
         rotate_nums(0, k - 1)

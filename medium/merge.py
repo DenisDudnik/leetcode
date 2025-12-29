@@ -3,10 +3,11 @@
 from typing import List
 
 
-# 2025-12-24
+# 2025-12-28
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         intervals.sort(key=lambda x: x[0])
+
         result = []
 
         for interval in intervals:

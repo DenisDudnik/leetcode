@@ -1,7 +1,7 @@
 # https://leetcode.com/problems/minimum-window-substring/
 
 
-# 2025-12-26
+# 2025-12-28
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         from collections import Counter
@@ -9,8 +9,8 @@ class Solution:
         need = Counter(t)
         missing = len(t)
 
-        min_len = float("inf")
         left = start = 0
+        min_len = float("inf")
 
         for right, ch in enumerate(s):
             if need[ch] > 0:
@@ -18,7 +18,7 @@ class Solution:
             need[ch] -= 1
 
             while missing == 0:
-                if right - left + 1 < min_len:
+                if right - left + 1 <= min_len:
                     min_len = right - left + 1
                     start = left
 

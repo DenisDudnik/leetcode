@@ -1,14 +1,12 @@
 # https://leetcode.com/problems/permutation-in-string/
 
 
-# 2025-12-26
+# 2025-12-28
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
         if len(s1) > len(s2):
             return False
-
-        a = {}
-        b = {}
+        a, b = {}, {}
 
         for i in range(len(s1)):
             a[s1[i]] = a.get(s1[i], 0) + 1

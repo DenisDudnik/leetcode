@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2025-12-24
+# 2025-12-28
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
         intervals.sort(key=lambda x: x[1])
@@ -11,10 +11,10 @@ class Solution:
         removed = 0
 
         for interval in intervals:
-            if interval[0] < last_end:
-                removed += 1
-            else:
+            if interval[0] >= last_end:
                 last_end = interval[1]
+            else:
+                removed += 1
 
         return removed
 
