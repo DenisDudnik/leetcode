@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2025-12-22
+# 2025-12-29
 class Solution:
     def longestConsecutive(self, nums: List[int]) -> int:
         nums_set = set(nums)

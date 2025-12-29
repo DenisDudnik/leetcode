@@ -1,7 +1,7 @@
 # https://leetcode.com/problems/longest-substring-without-repeating-characters/
 
 
-# 2025-12-25
+# 2025-12-29
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         longest = left = 0
@@ -14,6 +14,7 @@ class Solution:
             longest = max(longest, i - left + 1)
 
         return longest
+
 
 
 if __name__ == "__main__":
