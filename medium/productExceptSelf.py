@@ -2,7 +2,7 @@
 
 from typing import List
 
-# 2025-12-16
+# 2026-01-01
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         result = [1] * len(nums)

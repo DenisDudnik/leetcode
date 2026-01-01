@@ -3,37 +3,37 @@
 from typing import List
 
 
-# 2025-12-16
+# 2026-01-01
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         if target < matrix[0][0] or target > matrix[-1][-1]:
             return False
 
-        first, last = 0, len(matrix) - 1
+        top, bottom = 0, len(matrix) - 1
         row = None
 
-        while first <= last:
-            mid = (first + last) // 2
+        while top <= bottom:
+            mid = (top + bottom) // 2
             if target < matrix[mid][0]:
-                last = mid - 1
+                bottom = mid - 1
             elif target > matrix[mid][-1]:
-                first = mid + 1
+                top = mid + 1
             else:
                 row = matrix[mid]
                 break
 
-        if not row:
+        if row is None:
             return False
 
-        first, last = 0, len(row) - 1
-        while first <= last:
-            mid = (first + last) // 2
-            if row[mid] == target:
+        left, right = 0, len(row) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if target == row[mid]:
                 return True
             elif target < row[mid]:
-                last = mid - 1
+                right = mid - 1
             else:
-                first = mid + 1
+                left = mid + 1
 
         return False
 

@@ -1,26 +1,27 @@
 # https://leetcode.com/problems/permutation-in-string/
 
 
-# 2025-12-28
+# 2026-01-01
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
         if len(s1) > len(s2):
             return False
-        a, b = {}, {}
+
+        d1, d2 = {}, {}
 
         for i in range(len(s1)):
-            a[s1[i]] = a.get(s1[i], 0) + 1
-            b[s2[i]] = b.get(s2[i], 0) + 1
+            d1[s1[i]] = d1.get(s1[i], 0) + 1
+            d2[s2[i]] = d2.get(s2[i], 0) + 1
 
         for i in range(len(s1), len(s2)):
-            if a == b:
+            if d1 == d2:
                 return True
-            b[s2[i]] = b.get(s2[i], 0) + 1
-            b[s2[i - len(s1)]] -= 1
-            if b[s2[i - len(s1)]] == 0:
-                del b[s2[i - len(s1)]]
+            d2[s2[i]] = d2.get(s2[i], 0) + 1
+            d2[s2[i - len(s1)]] -= 1
+            if d2[s2[i - len(s1)]] == 0:
+                del d2[s2[i - len(s1)]]
 
-        return a == b
+        return d1 == d2
 
 
 # tests
