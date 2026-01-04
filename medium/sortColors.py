@@ -3,11 +3,10 @@
 from typing import List
 
 
-# 2025-12-28
+# 2026-01-04
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
-        left = mid = 0
-        right = len(nums) - 1
+        left, mid, right = 0, 0, len(nums) - 1
 
         while mid <= right:
             if nums[mid] == 0:
