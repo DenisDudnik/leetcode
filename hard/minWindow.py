@@ -1,12 +1,12 @@
 # https://leetcode.com/problems/minimum-window-substring/
 
 
-# 2026-01-01
+# 2026-01-05
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         from collections import Counter
 
-        if len(s) < len(t):
+        if len(t) > len(s):
             return ""
 
         need = Counter(t)
