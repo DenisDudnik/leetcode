@@ -3,14 +3,13 @@
 from typing import List
 
 
-# 2026-01-03
+# 2026-01-07
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        rows, cols = len(matrix), len(matrix[0])
+        rows, cols = len(matrix) - 1, len(matrix[0]) - 1
+        row, col = 0, cols
 
-        row, col = 0, cols - 1
-
-        while row < rows and col >= 0:
+        while row <= rows and col >= 0:
             if matrix[row][col] == target:
                 return True
             elif target < matrix[row][col]:

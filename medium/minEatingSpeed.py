@@ -3,23 +3,18 @@
 from typing import List
 
 
-# 2026-01-03
+# 2026-01-07
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         left, right = 1, max(piles)
 
         while left < right:
             mid = (left + right) // 2
-
-            hours = 0
-            for p in piles:
-                hours += (p + mid - 1) // mid  # ceil(p / mid)
-
+            hours = sum((p + mid - 1) // mid for p in piles)
             if hours > h:
                 left = mid + 1
             else:
                 right = mid
-
         return left
 
 
