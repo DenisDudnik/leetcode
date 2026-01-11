@@ -4,49 +4,43 @@ from collections import Counter
 from typing import List
 
 
-# 2025-12-02
+# 2026-01-09
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        board_letters = Counter(letter for row in board for letter in row)
-        word_letters = Counter(word)
+        b_counter = Counter(ch for line in board for ch in line)
+        w_counter = Counter(word)
 
-        for letter in word_letters:
-            if board_letters[letter] < word_letters[letter]:
+        for ch in w_counter:
+            if w_counter[ch] > b_counter[ch]:
                 return False
 
-        if word_letters[word[0]] > word_letters[word[-1]]:
+        if b_counter[word[0]] > b_counter[word[-1]]:
             word = word[::-1]
 
-        rows = len(board)
-        cols = len(board[0])
+        rows, cols = len(board), len(board[0])
 
         def backtrack(row: int, col: int, idx: int):
             if idx == len(word):
                 return True
 
-            if (
-                row < 0
-                or row >= rows
-                or col < 0
-                or col >= cols
-                or board[row][col] == "*"
-                or board[row][col] != word[idx]
-            ):
+            if row < 0 or row >= rows or col < 0 or col >= cols or board[row][col] != word[idx]:
                 return False
 
-            tmp, board[row][col] = board[row][col], "*"
+            temp, board[row][col] = board[row][col], "#"
+
             res = (
                 backtrack(row + 1, col, idx + 1)
                 or backtrack(row - 1, col, idx + 1)
                 or backtrack(row, col + 1, idx + 1)
                 or backtrack(row, col - 1, idx + 1)
             )
-            board[row][col] = tmp
+
+            board[row][col] = temp
             return res
 
-        for row in range(rows):
-            for col in range(cols):
-                if board[row][col] == word[0] and backtrack(row, col, 0):
+        for r in range(rows):
+            for c in range(cols):
+                if board[r][c] == word[0] and backtrack(r, c, 0):
                     return True
 
         return False

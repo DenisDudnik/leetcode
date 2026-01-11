@@ -3,14 +3,15 @@
 from typing import List
 
 
-# 2025-12-02
+# 2026-01-10
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         left, right = 0, len(nums) - 1
 
         while left <= right:
             mid = (left + right) // 2
-            if target == nums[mid]:
+
+            if nums[mid] == target:
                 return mid
             # left sorted
             elif nums[left] <= nums[mid]:
@@ -18,7 +19,6 @@ class Solution:
                     left = mid + 1
                 else:
                     right = mid - 1
-            # right sorted
             else:
                 if target < nums[mid] or target > nums[right]:
                     right = mid - 1
