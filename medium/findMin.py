@@ -3,22 +3,22 @@
 from typing import List
 
 
-# 2026-01-07
+# 2026-01-12
 class Solution:
     def findMin(self, nums: List[int]) -> int:
         left, right = 0, len(nums) - 1
-        while left < right:
-            if nums[left] < nums[right]:
+
+        while left <= right:
+            if nums[left] <= nums[right]:
                 return nums[left]
 
             mid = (left + right) // 2
 
-            # left sorted
             if nums[left] <= nums[mid]:
                 left = mid + 1
             else:
                 right = mid
-        return nums[left]
+
 
 
 if __name__ == "__main__":

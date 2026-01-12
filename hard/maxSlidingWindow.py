@@ -2,24 +2,26 @@
 
 from typing import List
 
-# 2026-01-07
+# 2026-01-12
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         from collections import deque
 
-        result = []
         window = deque()
+        res = []
 
         for i, n in enumerate(nums):
             while window and nums[window[-1]] < n:
                 window.pop()
             window.append(i)
-            if window[0] <= i - k:
-                window.popleft()
-            if i >= k-1:
-                result.append(nums[window[0]])
 
-        return result
+            if window[0] < i - k + 1:
+                window.popleft()
+
+            if i >= k - 1:
+                res.append(nums[window[0]])
+
+        return res
 
 
 # tests
