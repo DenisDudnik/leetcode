@@ -1,21 +1,22 @@
 # https://leetcode.com/problems/longest-repeating-character-replacement/
 
-# 2026-01-07
+# 2026-01-16
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        longest = 0
-        s_dict = {}
         left = 0
-        most_f = 0
+        mostf = 0
+        longest = 0
+        ch_counts = {}
 
         for right, ch in enumerate(s):
-            s_dict[ch] = s_dict.get(ch, 0) + 1
-            most_f = max(most_f, s_dict[ch])
-            while right - left + 1 > most_f + k:
-                s_dict[s[left]] -= 1
+            ch_counts[ch] = ch_counts.get(ch, 0) + 1
+            mostf = max(mostf, ch_counts[ch])
+
+            while right - left + 1 > mostf + k:
+                ch_counts[s[left]] -= 1
                 left += 1
 
-            longest = max(longest, right - left + 1)
+            longest = max(right - left + 1, longest)
 
         return longest
 
