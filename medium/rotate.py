@@ -2,23 +2,24 @@
 
 from typing import List
 
-# 2026-01-04
+
+# 2026-01-18
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
-        k = k % len(nums)
-
+        n = len(nums)
+        k = k % n
         if k == 0:
             return
 
-        def rotate_range(left, right):
+        def rotate_array(left, right):
             while left < right:
                 nums[left], nums[right] = nums[right], nums[left]
                 left += 1
                 right -= 1
 
-        rotate_range(0, len(nums) - 1)
-        rotate_range(0, k - 1)
-        rotate_range(k, len(nums) - 1)
+        rotate_array(0, n - 1)
+        rotate_array(0, k - 1)
+        rotate_array(k, n - 1)
 
 
 if __name__ == "__main__":
