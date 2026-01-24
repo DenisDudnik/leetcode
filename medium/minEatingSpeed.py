@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2026-01-13
+# 2026-01-24
 class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         left, right = 1, max(piles)
@@ -15,7 +15,6 @@ class Solution:
                 right = mid
             else:
                 left = mid + 1
-
         return left
 
 

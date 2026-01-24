@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2026-01-16
+# 2026-01-24
 class Solution:
     def findPeakElement(self, nums: List[int]) -> int:
         left, right = 0, len(nums) - 1
@@ -14,7 +14,6 @@ class Solution:
                 left = mid + 1
             else:
                 right = mid
-
         return left
 
 
