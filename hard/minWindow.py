@@ -1,35 +1,35 @@
 # https://leetcode.com/problems/minimum-window-substring/
 
 
-# 2026-01-16
+# 2026-01-29
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        from collections import Counter
-
         if len(s) < len(t):
             return ""
 
+        from collections import Counter
+
         need = Counter(t)
-        not_found = len(t)
+        not_founded = len(t)
+
         left = start = 0
-        size = float("inf")
+        min_len = 10**6
 
         for right, ch in enumerate(s):
             if need[ch] > 0:
-                not_found -= 1
+                not_founded -= 1
             need[ch] -= 1
 
-            while not_found == 0:
-                if right - left + 1 < size:
+            while not_founded == 0:
+                if right - left + 1 < min_len:
                     start = left
-                    size = right - left + 1
-
+                    min_len = right - left + 1
                 need[s[left]] += 1
                 if need[s[left]] > 0:
-                    not_found += 1
+                    not_founded += 1
                 left += 1
 
-        return "" if size == float("inf") else s[start : start + size]
+        return "" if min_len == 10**6 else s[start : start + min_len]
 
 
 if __name__ == "__main__":
