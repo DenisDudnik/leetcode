@@ -3,22 +3,21 @@
 from typing import List
 
 
-# 2026-01-05
+# 2026-02-02
 class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
-        res = []
-        ranges = []
+        result, ranges = [], []
 
-        for num in nums:
-            if not ranges or ranges[-1][1] < num - 1:
-                ranges.append([num, num])
+        for n in nums:
+            if ranges and ranges[-1][1] + 1 == n:
+                ranges[-1][1] = n
             else:
-                ranges[-1][1] = num
+                ranges.append([n, n])
 
         for r in ranges:
-            res.append(f"{r[0]}->{r[1]}" if r[0] != r[1] else f"{r[0]}")
+            result.append(f"{r[0]}" if r[0] == r[1] else f"{r[0]}->{r[1]}")
 
-        return res
+        return result
 
 
 if __name__ == "__main__":

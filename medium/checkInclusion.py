@@ -1,7 +1,7 @@
 # https://leetcode.com/problems/permutation-in-string/
 
 
-# 2026-01-16
+# 2026-02-02
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
         if len(s1) > len(s2):
