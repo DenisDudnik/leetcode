@@ -2,22 +2,22 @@
 
 from typing import List
 
-# 2026-01-01
+# 2026-02-04
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        result = [1] * len(nums)
+        res = [1] * len(nums)
 
         pre = 1
         for i in range(len(nums)):
-            result[i] = pre
+            res[i] = pre
             pre *= nums[i]
 
         post = 1
         for i in range(len(nums) - 1, -1, -1):
-            result[i] *= post
+            res[i] *= post
             post *= nums[i]
 
-        return result
+        return res
 
 
 if __name__ == "__main__":

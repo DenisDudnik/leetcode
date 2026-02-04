@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2026-01-12
+# 2026-02-04
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
         res = 0

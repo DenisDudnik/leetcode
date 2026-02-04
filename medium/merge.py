@@ -6,15 +6,14 @@ from typing import List
 # 2026-01-18
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        intervals.sort(key=lambda x: x[0])
         res = []
+        intervals.sort(key=lambda x: x[0])
 
         for interval in intervals:
-            if not res or interval[0] > res[-1][1]:
-                res.append(interval)
-            else:
+            if res and res[-1][1] >= interval[0]:
                 res[-1][1] = max(res[-1][1], interval[1])
-
+            else:
+                res.append(interval)
         return res
 
 
