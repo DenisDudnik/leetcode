@@ -3,21 +3,21 @@
 from typing import List
 
 
-# 2025-12-19
+# 2026-02-05
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        first, last = -1, -1
+        first = -1
 
         left, right = 0, len(nums) - 1
         while left <= right:
             mid = (left + right) // 2
-            if nums[mid] == target:
+            if target < nums[mid]:
+                right = mid - 1
+            elif target > nums[mid]:
+                left = mid + 1
+            else:
                 first = mid
                 right = mid - 1
-            elif target < nums[mid]:
-                right = mid - 1
-            else:
-                left = mid + 1
 
         if first == -1:
             return [-1, -1]
@@ -25,12 +25,12 @@ class Solution:
         left, right = first, len(nums) - 1
         while left <= right:
             mid = (left + right) // 2
-            if nums[mid] == target:
-                last = mid
-                left = mid + 1
-            elif target < nums[mid]:
+            if target < nums[mid]:
                 right = mid - 1
+            elif target > nums[mid]:
+                left = mid + 1
             else:
+                last = mid
                 left = mid + 1
 
         return [first, last]

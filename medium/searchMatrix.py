@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2026-01-01
+# 2026-02-06
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         if target < matrix[0][0] or target > matrix[-1][-1]:
@@ -28,12 +28,12 @@ class Solution:
         left, right = 0, len(row) - 1
         while left <= right:
             mid = (left + right) // 2
-            if target == row[mid]:
-                return True
-            elif target < row[mid]:
+            if target < row[mid]:
                 right = mid - 1
-            else:
+            elif target > row[mid]:
                 left = mid + 1
+            else:
+                return True
 
         return False
 
