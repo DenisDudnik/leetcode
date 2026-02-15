@@ -3,14 +3,14 @@
 from typing import List
 
 
-# 2025-12-15
+# 2026-02-15
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        result = []
+        res = []
 
         def backtrack(path: list[str], left: int, right: int):
             if right == n:
-                result.append("".join(path))
+                res.append("".join(path))
                 return
             if left < n:
                 path.append("(")
@@ -22,7 +22,7 @@ class Solution:
                 path.pop()
 
         backtrack([], 0, 0)
-        return result
+        return res
 
 
 if __name__ == "__main__":

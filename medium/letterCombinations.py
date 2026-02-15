@@ -2,7 +2,7 @@
 
 from typing import List
 
-# 2025-12-15
+# 2026-02-15
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         MAPPING = {
@@ -15,25 +15,26 @@ class Solution:
             "8": "tuv",
             "9": "wxyz",
         }
-        # result = []
+
+        # res = []
 
         # def backtrack(path: list[str], idx: int):
         #     if idx == len(digits):
         #         if path:
-        #             result.append("".join(path))
+        #             res.append("".join(path))
         #         return
-        #     for s in MAPPING[digits[idx]]:
-        #         path.append(s)
+        #     for ch in MAPPING[digits[idx]]:
+        #         path.append(ch)
         #         backtrack(path, idx + 1)
         #         path.pop()
 
         # backtrack([], 0)
-        # return result
+        # return res
 
-        import itertools
+        from itertools import product
 
-        source = [MAPPING[d] for d in digits]
-        return ["".join(p) for p in itertools.product(*source) if p]
+        combs = [MAPPING[d] for d in digits]
+        return ["".join(p) for p in product(*combs) if p]
 
 
 if __name__ == "__main__":

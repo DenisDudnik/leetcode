@@ -3,21 +3,18 @@
 from typing import List
 
 
-# 2025-12-15
+# 2026-02-15
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        if target <= 1:
+        if target < 2:
             return []
 
-        result = []
+        res = []
 
         def backtrack(path: list[int], path_sum: int, idx: int):
             if path_sum == target:
-                result.append(path[:])
+                res.append(path[:])
                 return
-            if idx == len(candidates):
-                return
-
             for i in range(idx, len(candidates)):
                 c = candidates[i]
                 if path_sum + c <= target:
@@ -26,7 +23,7 @@ class Solution:
                     path.pop()
 
         backtrack([], 0, 0)
-        return result
+        return res
 
 
 if __name__ == "__main__":
