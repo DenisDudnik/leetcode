@@ -3,23 +3,23 @@
 from typing import List
 
 
-# 2025-12-22
+# 2026-02-23
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        result = []
+        res = []
 
-        def backtarck(path: list[int], idx: int):
-            result.append(path[:])
+        def backtrack(path: list[int], idx: int):
+            res.append(path[:])
             if idx == len(nums):
                 return
 
             for i in range(idx, len(nums)):
                 path.append(nums[i])
-                backtarck(path, i + 1)
+                backtrack(path, i + 1)
                 path.pop()
 
-        backtarck([], 0)
-        return result
+        backtrack([], 0)
+        return res
 
 
 # Тесты

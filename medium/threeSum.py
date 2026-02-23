@@ -3,11 +3,11 @@
 from typing import List
 
 
-# 2026-02-05
+# 2026-02-23
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        res = []
         nums.sort()
+        res = []
 
         for i in range(len(nums)):
             if i > 0 and nums[i] == nums[i - 1]:
@@ -17,13 +17,9 @@ class Solution:
 
             target = -nums[i]
             left, right = i + 1, len(nums) - 1
+
             while left < right:
-                s = nums[left] + nums[right]
-                if s < target:
-                    left += 1
-                elif s > target:
-                    right -= 1
-                else:
+                if nums[left] + nums[right] == target:
                     res.append([nums[i], nums[left], nums[right]])
 
                     while left < right and nums[left] == nums[left + 1]:
@@ -32,6 +28,10 @@ class Solution:
                         right -= 1
 
                     left += 1
+                    right -= 1
+                elif nums[left] + nums[right] < target:
+                    left += 1
+                else:
                     right -= 1
 
         return res
