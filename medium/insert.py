@@ -3,28 +3,28 @@
 from typing import List
 
 
-# 2026-02-04
+# 2026-03-09
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        result = []
+        res = []
+        i = 0
 
-        i, n = 0, len(intervals) - 1
-
-        while i <= n and intervals[i][1] < newInterval[0]:
-            result.append(intervals[i])
+        while i < len(intervals) and intervals[i][1] < newInterval[0]:
+            res.append(intervals[i])
             i += 1
 
-        while i <= n and intervals[i][0] <= newInterval[1]:
-            newInterval[0] = min(intervals[i][0], newInterval[0])
-            newInterval[1] = max(intervals[i][1], newInterval[1])
-            i += 1
-        result.append(newInterval)
-
-        while i <= n:
-            result.append(intervals[i])
+        while i < len(intervals) and intervals[i][0] <= newInterval[1]:
+            newInterval[0] = min(newInterval[0], intervals[i][0])
+            newInterval[1] = max(newInterval[1], intervals[i][1])
             i += 1
 
-        return result
+        res.append(newInterval)
+
+        while i < len(intervals):
+            res.append(intervals[i])
+            i += 1
+
+        return res
 
 
 if __name__ == "__main__":

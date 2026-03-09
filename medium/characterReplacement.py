@@ -1,9 +1,9 @@
 # https://leetcode.com/problems/longest-repeating-character-replacement/
 
-# 2026-02-14
+# 2026-03-09
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        start = left = 0
+        left = 0
         mostf = 0
         counts = {}
 
@@ -11,13 +11,11 @@ class Solution:
             counts[ch] = counts.get(ch, 0) + 1
             mostf = max(mostf, counts[ch])
 
-            while right - left + 1 > mostf + k:
+            while right - left + 1 - mostf > k:
                 counts[s[left]] -= 1
                 left += 1
 
-            start = left
-
-        return right - start + 1
+        return len(s) - left
 
 
 # tests
