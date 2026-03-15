@@ -2,7 +2,7 @@
 
 from typing import List
 
-# 2026-02-14
+# 2026-03-14
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         from collections import deque
@@ -30,3 +30,4 @@ assert s.maxSlidingWindow([1], 1) == [1]
 assert s.maxSlidingWindow([1, -1], 1) == [1, -1]
 assert s.maxSlidingWindow([9, 11], 2) == [11]
 assert s.maxSlidingWindow([4, -2], 2) == [4]
+assert s.maxSlidingWindow([3,1,1,3], 3) == [3,3]
