@@ -2,17 +2,17 @@
 
 from typing import List
 
-# 2026-01-10
+# 2026-03-15
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
-        res = []
         n = len(s)
-
-        dp = [[None] * n for _ in range(n)]
+        dp = [[False] * n for _ in range(n)]
 
         for i in range(n - 1, -1, -1):
             for j in range(i, n):
-                dp[i][j] = (j - i <= 1 or dp[i + 1][j - 1]) and s[i] == s[j]
+                dp[i][j] = s[i] == s[j] and (j - i <= 1 or dp[i + 1][j - 1])
+
+        res = []
 
         def backtrack(path: list[str], start: int):
             if start == n:
