@@ -3,23 +3,27 @@
 from typing import List
 
 
-# 2026-02-15
+# 2026-03-30
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
-        k = k % len(nums)
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        n = len(nums)
+        k = k % n
 
         if k == 0:
             return
 
-        def _rotate(left: int, right: int):
+        def rotate_list(left: int, right: int):
             while left < right:
                 nums[left], nums[right] = nums[right], nums[left]
                 left += 1
                 right -= 1
 
-        _rotate(0, len(nums) - 1)
-        _rotate(0, k - 1)
-        _rotate(k, len(nums) - 1)
+        rotate_list(0, n - 1)
+        rotate_list(0, k - 1)
+        rotate_list(k, n - 1)
 
 
 if __name__ == "__main__":

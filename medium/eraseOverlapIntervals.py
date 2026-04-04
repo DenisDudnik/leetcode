@@ -3,19 +3,19 @@
 from typing import List
 
 
-# 2026-03-09
+# 2026-04-03
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
-        res = 0
         intervals.sort(key=lambda x: x[1])
         last_end = -6 * 10**4
+        cnt = 0
 
         for i in intervals:
-            if i[0] >= last_end:
-                last_end = i[1]
+            if i[0] < last_end:
+                cnt += 1
             else:
-                res += 1
-        return res
+                last_end = i[1]
+        return cnt
 
 
 # tests
