@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2026-02-04
+# 2026-04-07
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         # res = []
@@ -13,11 +13,10 @@ class Solution:
         #     if len(path) == len(nums):
         #         res.append(path[:])
         #         return
-
         #     for i in range(len(nums)):
         #         if not used[i]:
-        #             used[i] = True
         #             path.append(nums[i])
+        #             used[i] = True
         #             backtrack(path)
         #             path.pop()
         #             used[i] = False
@@ -25,9 +24,9 @@ class Solution:
         # backtrack([])
         # return res
 
-        from itertools import permutations
+        import itertools
 
-        return [list(p) for p in permutations(nums)]
+        return [list(p) for p in itertools.permutations(nums)]
 
 
 # Тесты
