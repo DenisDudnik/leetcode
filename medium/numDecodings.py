@@ -1,26 +1,26 @@
 # https://leetcode.com/problems/decode-ways/
 
-# 2026-04-09
+# 2026-04-14
 class Solution:
     def numDecodings(self, s: str) -> int:
-        if not s or s[0] == "0":
+        if s[0] == "0":
             return 0
 
-        prev_2 = 1
-        prev_1 = 1
+        prev1 = 1
+        prev2 = 1
 
         for i in range(1, len(s)):
             current = 0
 
             if s[i] != "0":
-                current += prev_1
+                current += prev1
 
             if 10 <= int(s[i - 1 : i + 1]) <= 26:
-                current += prev_2
+                current += prev2
 
-            prev_1, prev_2 = current, prev_1
+            prev1, prev2 = current, prev1
 
-        return prev_1
+        return prev1
 
 
 def run_tests():
