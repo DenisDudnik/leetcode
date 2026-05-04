@@ -3,12 +3,10 @@
 from typing import List
 
 
-# 2026-03-09
+# 2026-05-04
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        rows = len(matrix)
-        cols = len(matrix[0])
-
+        rows, cols = len(matrix), len(matrix[0])
         row, col = 0, cols - 1
 
         while row < rows and col >= 0:
@@ -18,7 +16,6 @@ class Solution:
                 row += 1
             else:
                 return True
-
         return False
 
 
