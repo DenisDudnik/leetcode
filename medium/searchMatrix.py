@@ -3,15 +3,15 @@
 from typing import List
 
 
-# 2026-03-09
+# 2026-05-04
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         if target < matrix[0][0] or target > matrix[-1][-1]:
             return False
 
         top, bottom = 0, len(matrix) - 1
-        row = None
 
+        row = None
         while top <= bottom:
             mid = (top + bottom) // 2
             if target < matrix[mid][0]:
@@ -36,7 +36,6 @@ class Solution:
                 return True
 
         return False
-
 
 if __name__ == "__main__":
     solution = Solution()
