@@ -3,33 +3,34 @@
 from typing import List
 
 
-# 2026-03-22
+# 2026-05-18
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        nums.sort()
         res = []
+        nums.sort()
 
         for i in range(len(nums)):
             if nums[i] > 0:
                 break
-            if i > 0 and nums[i] == nums[i - 1]:
+            if i and nums[i - 1] == nums[i]:
                 continue
+
             target = -nums[i]
             left, right = i + 1, len(nums) - 1
             while left < right:
-                s = nums[left] + nums[right]
-                if s == target:
+                if nums[left] + nums[right] < target:
+                    left += 1
+                elif nums[left] + nums[right] > target:
+                    right -= 1
+                else:
                     res.append([nums[i], nums[left], nums[right]])
-                    while left < right and nums[left] == nums[left + 1]:
+                    while left < right and nums[left + 1] == nums[left]:
                         left += 1
-                    while left < right and nums[right] == nums[right - 1]:
+                    while left < right and nums[right - 1] == nums[right]:
                         right -= 1
                     left += 1
                     right -= 1
-                elif s < target:
-                    left += 1
-                else:
-                    right -= 1
+
 
         return res
 

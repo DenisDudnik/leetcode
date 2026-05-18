@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2026-03-15
+# 2026-05-18
 class Solution:
     def findMin(self, nums: List[int]) -> int:
         left, right = 0, len(nums) - 1
