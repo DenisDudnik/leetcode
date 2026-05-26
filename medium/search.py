@@ -3,7 +3,7 @@
 from typing import List
 
 
-# 2026-03-15
+# 2026-05-26
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         left, right = 0, len(nums) - 1
@@ -11,20 +11,18 @@ class Solution:
         while left <= right:
             mid = (left + right) // 2
 
-            if nums[mid] == target:
+            if target == nums[mid]:
                 return mid
-            # left sorted
             elif nums[left] <= nums[mid]:
-                if target > nums[mid] or target < nums[left]:
+                if target < nums[left] or target > nums[mid]:
                     left = mid + 1
                 else:
                     right = mid - 1
             else:
-                if target > nums[right] or target < nums[mid]:
+                if target < nums[mid] or target > nums[right]:
                     right = mid - 1
                 else:
                     left = mid + 1
-
         return -1
 
 

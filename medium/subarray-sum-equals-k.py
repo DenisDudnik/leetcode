@@ -7,19 +7,17 @@ from typing import List
 # https://www.youtube.com/watch?v=1x91vuYSibw
 
 
-# 2026-04-03
+# 2026-05-26
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         prefix_sums = {0: 1}
-        prefix_sum = 0
-        cnt = 0
+        prefix_sum = res = 0
 
         for n in nums:
             prefix_sum += n
-            cnt += prefix_sums.get(prefix_sum - k, 0)
+            res += prefix_sums.get(prefix_sum - k, 0)
             prefix_sums[prefix_sum] = prefix_sums.get(prefix_sum, 0) + 1
-
-        return cnt
+        return res
 
 
 # tests
